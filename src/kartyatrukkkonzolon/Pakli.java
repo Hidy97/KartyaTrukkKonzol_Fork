@@ -1,39 +1,26 @@
 package kartyatrukkkonzolon;
 
-import java.util.Scanner;
+public class Pakli {
+    private String[] pakli; // = new String[22];
+    private String[] szinek; //= {"Ász", "Kir", "Fel", "X", "IX", "VIII"};
+    private String[] ertekek; //= {"P", "T", "Z", "M"};
 
-public class KartyaTrukkKonzolon {
-
-   private static String[] pakli = new String[22];
-    private static final Scanner sc = new Scanner(System.in);
-
-    public static void main(String[] args) {
-        indit();
-        melyik(); //melyik(oszlop);
-        /*
-        feltolt();
-        for (int i = 0; i < 3; i++) {
-            kirak();
-            int oszlop = melyik();
-            kever(oszlop);
-        }
-        ezVolt();
-        */
-    }
-
-    private static void feltolt() {
-        String[] szinek = {"P", "T", "Z", "M"};
-        String[] ertekek = {"Ász", "Kir", "Fel", "X", "IX", "VIII"};
+    public Pakli(String[] pakli, String[] szinek, String[] ertekek) {
+        this.pakli = pakli;
+        this.szinek = szinek;
+        this.ertekek = ertekek;
+    }    
+    
+    private void feltolt(){
         int i = 1;
         for (String szin : szinek) {
             for (int e = 0; e < ertekek.length && i < pakli.length; e++) {
                 pakli[i++] = szin + "_" + ertekek[e];
             }
         }
-
     }
     
-    private static void kirak() {
+    private void kirak(){
         for (int i = 1; i < pakli.length; i++) {
             System.out.printf("%-8s", pakli[i]);
             if (i % 3 == 0) {
@@ -41,20 +28,8 @@ public class KartyaTrukkKonzolon {
             }
         }
     }
-
-    private static int melyik() {
-        boolean jo;
-        int oszlop;
-        do {
-            System.out.print("melyik oszlop (1-3): ");
-            oszlop = sc.nextInt();
-            jo = oszlop >= 1 && oszlop <= 3;
-        } while (!jo);
-        return oszlop;
-    }
-
-    private static void kever(int oszlop) {
-        // mindig középre a választott
+    
+    private void kever(int oszlop){
         String[] ujPakli = new String[22];
         switch (oszlop) {
             case 1:
@@ -81,13 +56,9 @@ public class KartyaTrukkKonzolon {
         }
         pakli = ujPakli;
     }
-
-    private static void ezVolt() {
+    
+    private void ezVolt(){
         System.out.println("A választott lap: " + pakli[11]);
     }
-
-    private static void indit() {
-        
-    }
-
+    
 }
